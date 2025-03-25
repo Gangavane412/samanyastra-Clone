@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Workflow Section</title>
+    <style>
+        /* Using the same color scheme as previous code */
+        :root {
+            --dark-bg: #131313;
+            --space-bg: #0a0a1a;
+            --accent: #f00946;
+            --text-light: #ffffff;
+            --glow: rgba(100, 200, 255, 0.5);
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--space-bg);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .workflow-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px var(--glow);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--accent), var(--glow));
+            box-shadow: 0 0 10px var(--glow);
+            animation: growLine 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .step {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Animate each step with different delays */
+        .step:nth-child(1) { animation: fadeInUp 0.8s ease-out forwards 1s; }
+        .step:nth-child(2) { animation: fadeInUp 0.8s ease-out forwards 1.3s; }
+        .step:nth-child(3) { animation: fadeInUp 0.8s ease-out forwards 1.6s; }
+        .step:nth-child(4) { animation: fadeInUp 0.8s ease-out forwards 1.9s; }
+        .step:nth-child(5) { animation: fadeInUp 0.8s ease-out forwards 2.2s; }
+        
+        /* Number in circle */
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -25px;
+            z-index: 2;
+            box-shadow: 0 0 15px var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover .step-number {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 0 25px var(--accent);
+        }
+        
+        .step-content {
+            width: calc(50% - 60px);
+            padding: 30px;
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover .step-content {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Alternate sides */
+        .step:nth-child(odd) .step-content {
+            margin-right: auto;
+            margin-left: 60px;
+        }
+        
+        .step:nth-child(even) .step-content {
+            margin-left: auto;
+            margin-right: 60px;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .step-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .step:hover .step-title::after {
+            width: 100px;
+        }
+        
+        .step-description {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        /* Arrow pointers */
+        .step-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--dark-bg);
+            top: 20px;
+            transform: rotate(45deg);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .step:nth-child(odd) .step-content::after {
+            right: -10px;
+        }
+        
+        .step:nth-child(even) .step-content::after {
+            left: -10px;
+        }
+        
+        .step:hover .step-content::after {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Keyframe animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes growLine {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        
+        /* Floating particles animation */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--glow);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+                animation: growLineMobile 1.5s ease-out forwards;
+                animation-delay: 0.5s;
+            }
+            
+            .step-content {
+                width: calc(100% - 90px);
+                margin-left: 90px !important;
+            }
+            
+            .step-number {
+                left: 30px;
+            }
+            
+            .step-content::after {
+                left: -10px !important;
+                right: auto;
+            }
+            
+            @keyframes growLineMobile {
+                from { height: 0; }
+                to { height: calc(100% - 80px); }
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="workflow-section">
+        <!-- Floating particles -->
+        <div class="particles" id="particles"></div>
+        
+        <h2 class="section-title">Student to Leader Journey Program</h2>
+        
+        <div class="timeline">
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Student</h3>
+                        
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Intern</h3>
+                        
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">SME</h3>
+                        
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Employee</h3>
+                       
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Leader</h3>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create floating particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 3 + 1;
+                const posX = Math.random() * 100;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                const opacity = Math.random() * 0.5 + 0.1;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.bottom = `-10px`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.opacity = opacity;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Add hover effect to steps
+            const steps = document.querySelectorAll('.step');
+            steps.forEach(step => {
+                step.addEventListener('mouseenter', () => {
+                    step.querySelector('.step-number').style.transform = 'translateX(-50%) scale(1.2)';
+                });
+                step.addEventListener('mouseleave', () => {
+                    step.querySelector('.step-number').style.transform = 'translateX(-50%) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
