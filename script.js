@@ -283,3 +283,99 @@ document.addEventListener('DOMContentLoaded', function() {
     // Continue creating stars periodically
     setInterval(createShootingStar, 1000);
 });
+
+
+
+
+
+
+
+
+
+//****************************trasleter ************************************* */
+
+// Google Translate initialization
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'af,ar,bn,bs,ca,cs,da,de,el,en,es,eu,fi,fr,gu,hi,hr,hu,id,it,iw,ja,kn,ko,lt,lv,ml,mr,nl,no,pl,pt,ro,ru,sk,sr,sv,ta,te,th,tl,tr,uk,ur,vi,zh-CN,zh-TW',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+
+
+
+
+
+// Save language preference and enhance functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Load saved language preference
+    if(localStorage.getItem('googtrans')) {
+        var lang = localStorage.getItem('googtrans').split('/')[2];
+        if(lang) {
+            var iframe = document.querySelector('.goog-te-menu-frame');
+            if(iframe) {
+                var item = iframe.contentWindow.document.querySelector('.goog-te-menu2-item[value="' + lang + '"]');
+                if(item) item.click();
+            }
+        }
+    }
+    
+    // Listen for language changes
+    var observer = new MutationObserver(function() {
+        var langValue = document.querySelector('.goog-te-menu-value');
+        if(langValue) {
+            var currentLang = langValue.textContent;
+            if(currentLang && currentLang !== 'Select Language') {
+                var iframe = document.querySelector('.goog-te-menu-frame');
+                if(iframe) {
+                    var langCodeElement = iframe.contentWindow.document.querySelector('.goog-te-menu2-item[data-language-code="' + currentLang + '"]');
+                    if(langCodeElement) {
+                        var langCode = langCodeElement.value;
+                        localStorage.setItem('googtrans', '/en/' + langCode);
+                        
+                        // Optional: Reload page after language change for better compatibility
+                        // window.location.reload();
+                    }
+                }
+            }
+        }
+    });
+    
+    var langValueElement = document.querySelector('.goog-te-menu-value');
+    if(langValueElement) {
+        observer.observe(langValueElement, {
+            childList: true,
+            subtree: true
+        });
+    }
+    
+    // Optional: Add click event to all language links
+    document.querySelectorAll('a[data-lang]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var lang = this.getAttribute('data-lang');
+            var iframe = document.querySelector('.goog-te-menu-frame');
+            if(iframe) {
+                var item = iframe.contentWindow.document.querySelector('.goog-te-menu2-item[value="' + lang + '"]');
+                if(item) item.click();
+            }
+        });
+    });
+});
+
+
+    
+    var selector = document.createElement('div');
+    selector.className = 'language-selector';
+    selector.innerHTML = '<h3>Select Language:</h3><ul>' + 
+        languages.map(function(lang) {
+            return '<li><a href="#" data-lang="' + lang.code + '">' + lang.name + '</a></li>';
+        }).join('') + '</ul>';
+    
+    document.querySelector('.content').appendChild(selector);
+       
+// Call the function to add language selector
+addLanguageSelector();
+
