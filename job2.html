@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+       /* body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }*/
+        
+        header {
+            background: linear-gradient(black,rgba(71, 162, 211, 0.5));
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+        }
+        
+        header:hover::after {
+            animation: shine 1.5s infinite;
+        }
+        
+        @keyframes shine {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        .logo {
+            color: #fff;
+    justify-self: start;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    font-family: Amperzand;
+}
+
+.logo:hover{
+    color: cyan;
+  
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .search-container {
+            background-color: #131313;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: slideUp 0.5s forwards 0.2s;
+        }
+        
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .search-container input, .search-container select {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-container input:focus, .search-container select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            transform: scale(1.02);
+        }
+        
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100px;
+        }
+        
+        .search-container button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .search-container button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(75, 152, 172, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .search-container button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .job-listings {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .job-card {
+            background-color: #131313;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            transform: scale(0.95);
+            opacity: 0;
+            animation: cardAppear 0.5s forwards;
+            animation-delay: calc(var(--delay) * 0.1s);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes cardAppear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background-color: #4daff0;
+            transition: height 0.3s ease;
+        }
+        
+        .job-card:hover::before {
+            height: 100%;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .job-card h3 {
+            color: #e1e4e7;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .job-card:hover h3 {
+            color: rgb(223, 40, 192);
+        }
+        
+        .company {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .company::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .job-card:hover .company::after {
+            width: 100%;
+        }
+        
+        .posted-date, .last-date, .location, .experience {
+            color: #69a9ad;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .job-description {
+            margin: 15px 0;
+            color: white;
+            font-size: 0.95rem;
+            max-height: 60px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.3s ease;
+        }
+        
+        .job-description::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgb(209, 201, 201));
+            transition: opacity 0.3s ease;
+        }
+        
+        .job-card:hover .job-description {
+            max-height: 200px;
+        }
+        
+        .job-card:hover .job-description::after {
+            opacity: 0;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: aqua;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .apply-btn:hover {
+            background-color: #57b37f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(113, 212, 155, 0.3);
+        }
+        
+        .apply-btn:active {
+            transform: translateY(0);
+        }
+        
+       
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideRight 0.5s forwards 0.4s;
+        }
+        
+        @keyframes slideRight {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .tag {
+            padding: 5px 10px;
+            background-color: white;
+            color: #000;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background-color: #d0d0d0;
+            transform: translateY(-2px);
+        }
+        
+        .tag.active {
+            background-color: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .search-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-container input, .search-container select {
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .job-listings {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeIn">
+        <a href="/" class="logo">Samanyastra</a>
+    </header>
+    
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for jobs...">
+            <select id="location-filter">
+                <option value="">All Locations</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Pune">Pune</option>
+                <option value="Gurgaon">Gurgaon</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+                <option value="Nagpur">Nagpur</option>
+            </select>
+            <select id="experience-filter">
+                <option value="">All Experience Levels</option>
+                <option value="0">Fresher (0 years)</option>
+                <option value="1-2">1-2 years</option>
+                <option value="3-5">3-5 years</option>
+                <option value="5+">5+ years</option>
+            </select>
+            <button id="search-btn">Search</button>
+        </div>
+        
+        <div class="filter-tags">
+            <div class="tag active" data-filter="all">All Jobs</div>
+            <div class="tag" data-filter="tech">Tech Jobs</div>
+            <div class="tag" data-filter="operations">Operations</div>
+            <div class="tag" data-filter="analyst">Analyst</div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Loading jobs...</p>
+        </div>
+        
+        <div class="job-listings" id="job-listings">
+            <!-- Job cards will be inserted here by JavaScript -->
+        </div>
+    </div>
+    
+    <script>
+        // Job data
+        const jobs = [
+            {
+                title: "Associate, ML Data Operations",
+                company: "Amazon",
+                skills: "",
+                postedDate: "March 23, 2025 at 12:33:35 AM PDT",
+                lastDate: "March 25, 2025 at 05:00:00 PM PDT",
+                experience: "0 Years",
+                description: "An Associate in this role is required to watch the video of the stowing action at a fulfillment center, understand it thoroughly and make best use of human judgement in combination with the tools and resources to indicate the activity captured in the video. They are expected to verify or mark the location of product through a tool while maintaining highest level of accuracy. This process helps in maintaining the fulfillment center's stow quality. This is an operational role. Under general supervision, the Associate performs precise and thorough video/image audits with high degree of accuracy and speed, thus aiding defect reduction.",
+                location: "IND, TS, Hyderabad - Virtual IND, AP, Visakhapatnam - Virtual",
+                type: "Full-Time",
+                category: "operations"
+            },
+            {
+                title: "Associate Analyst",
+                company: "Infocepts Data & AI",
+                skills: "",
+                postedDate: "March 22, 2025 at 09:36:09 AM PDT",
+                lastDate: "March 24, 2025 at 05:00:00 PM PDT",
+                experience: "0 Years - 2024 Freshers only",
+                description: "Fundamentals of Data Warehousing and ETL: Basic knowledge of data warehousing and ETL processes. Good SQL Knowledge: Understanding the basics of SQL and familiarity with databases like MySQL or Oracle. Programming Skills: Proficiency in at least one programming language, with Python being highly preferred. Basic knowledge of Java or Scala can also be useful....",
+                location: "Nagpur/Chennai/Pune/Bangalore/Hyderabad",
+                type: "Full-Time",
+                category: "analyst"
+            },
+            {
+                title: "UI UX, Developer & Engineers",
+                company: "cannymindstech",
+                skills: "",
+                postedDate: "March 22, 2025 at 09:26:00 AM PDT",
+                lastDate: "March 23, 2025 at 05:00:00 PM PDT",
+                experience: "0-5 Years",
+                description: "General Openings",
+                location: "Chennai",
+                type: "Full-Time",
+                category: "tech"
+            },
+            {
+                title: "Zoho | Malware Analyst - C, C++, Python, ASM",
+                company: "ZOHO",
+                skills: "",
+                postedDate: "March 22, 2025 at 09:23:11 AM PDT",
+                lastDate: "March 23, 2025 at 05:00:00 PM PDT",
+                experience: "2-5 Years",
+                description: "We are seeking a skilled Malware Analyst to join our cybersecurity team. The ideal candidate should have a strong background in reverse engineering, malware analysis, and cyber threat research. This role involves analyzing malicious software, identifying vulnerabilities, and assisting in developing defense mechanisms against cyber threats.",
+                location: "Chennai",
+                type: "Full-Time",
+                category: "tech"
+            },
+            {
+                title: "KAAR Infotech Mega Freshers Drive - 2024 Passed out",
+                company: "KAAR",
+                skills: "",
+                postedDate: "March 22, 2025 at 09:22:11 AM PDT",
+                lastDate: "March 23, 2025 at 05:00:00 PM PDT",
+                experience: "Freshers of 2024",
+                description: "We are excited to announce that we are hiring 2024 pass-out freshers! This is a fantastic opportunity to kickstart your career in IT and be part of an innovative team B.E./BTech/ M.E./MTech/B.SC/M.SC in Computer Science or Equivalent Specialization(2024 Pass outs) 80% and above from 10th grade",
+                location: "Chennai",
+                type: "Full-Time",
+                category: "tech"
+            },
+            {
+                title: "Senior Project Engineer – C#/.NET - 3+ Yrs Exp.",
+                company: "Soliton",
+                skills: "",
+                postedDate: "March 22, 2025 at 09:20:55 AM PDT",
+                lastDate: "March 23, 2025 at 05:00:00 PM PDT",
+                experience: "3Yrs and above",
+                description: "We are looking for a Senior Developer to design and implement the software for multiple platforms such as Measurement & Automation, Semiconductor Applications. You will be working with teams and delivering high-quality deliverables with a strong focus on customer delight. We are looking for a Senior Developer to design and implement the software for multiple platforms such as Measurement & Automation, Semiconductor Applications. You will be working with teams and delivering high-quality deliverables with a strong focus on customer delight. If you are a person with high technical abilities and team spirit, can communicate well, and work with Agile teams, then we would surely love to meet you!",
+                location: "Chennai",
+                type: "Full-Time",
+                category: "tech"
+            },
+            {
+                title: "Java Developer",
+                company: "Wipro",
+                skills: "",
+                postedDate: "March 10, 2025 at 06:10:47 AM PDT",
+                lastDate: "March 10, 2025 at 05:00:00 PM PDT",
+                experience: "0 - 2 years",
+                description: "The purpose of this role is to design, test and maintain software programs for operating systems or applications which needs to be deployed at a client end and ensure its meet 100% quality assurance parameters",
+                location: "India",
+                type: "Full-Time",
+                category: "tech"
+            },
+            {
+                title: "Intern | Python Developer | Bengaluru | Customer Strategy & Design",
+                company: "Deloitte",
+                skills: "",
+                postedDate: "March 6, 2025 at 07:55:12 AM PST",
+                lastDate: "March 6, 2025 at 04:00:00 PM PST",
+                experience: "0 years",
+                description: "Assist in building AI/ML models and algorithms for real-world business problems. Contribute to the development and deployment of AI solutions using Python and NodeJS.",
+                location: "Bengaluru India",
+                type: "Full-Time",
+                category: "tech"
+            },
+            {
+                title: "Process Associate (BFS042483) - B. Com / BBA",
+                company: "Genpact",
+                skills: "",
+                postedDate: "March 5, 2025 at 09:48:05 AM PST",
+                lastDate: "March 4, 2025 at 04:00:00 PM PST",
+                experience: "0 years",
+                description: "Genpact (NYSE: G) is a global professional services and solutions firm delivering outcomes that shape the future. Our 125,000+ people across 30+ countries are driven by our innate curiosity, entrepreneurial agility, and desire to create lasting value for clients. Powered by our purpose - the relentless pursuit of a world that works better for people - we serve and transform leading enterprises, including the Fortune Global 500, with our deep business and industry knowledge, digital operations services, and expertise in data, technology, and AI.",
+                location: "Gurgaon / India",
+                type: "Full-Time",
+                category: "operations"
+            },
+            {
+                title: "Associate - Projects - JOBID #00062440665",
+                company: "COGNIZANT",
+                skills: "",
+                postedDate: "March 5, 2025 at 07:53:18 AM PST",
+                lastDate: "March 3, 2025 at 04:00:00 PM PST",
+                experience: "0 years",
+                description: "Create detailed design develop / modify / test programs for configuration development customization migration conversion maintenance and testing small to medium non-complex components of a project module with the objective of ensuring least defects in the product / release within the client and project specifications.",
+                location: "Gurgaon / Chennai / India",
+                type: "Full-Time",
+                category: "tech"
+            }
+        ];
+
+        // Function to render job listings
+        function renderJobs(jobsToRender) {
+            const jobListings = document.getElementById('job-listings');
+            const loading = document.getElementById('loading');
+            
+            // Show loading spinner
+            jobListings.style.opacity = '0';
+            loading.style.display = 'block';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                jobListings.innerHTML = '';
+                
+                jobsToRender.forEach((job, index) => {
+                    const jobCard = document.createElement('div');
+                    jobCard.className = 'job-card';
+                    jobCard.style.setProperty('--delay', index);
+                    
+                    // Check if last date to apply has passed
+                    const today = new Date();
+                    const lastDateStr = job.lastDate.split(' at ')[0]; // Extract date part
+                    const lastDateParts = lastDateStr.split(' ');
+                    const lastDate = new Date(`${lastDateParts[2]} ${lastDateParts[1]} ${lastDateParts[0]}`);
+                    
+                    const isUrgent = today > lastDate;
+                    
+                    jobCard.innerHTML = `
+                     <h3>${job.title} ${isUrgent ? '<span class="urgent"></span>' : ''}</h3>
+                        <div class="company">${job.company}</div>
+                        <div class="posted-date">Posted: ${job.postedDate}</div>
+                        <div class="last-date">Last date to apply: ${job.lastDate}</div>
+                        <div class="experience">Experience Required: ${job.experience}</div>
+                        <div class="location">Location: ${job.location}</div>
+                        <div class="job-description">${job.description}</div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    `;
+                    
+                    jobListings.appendChild(jobCard);
+                });
+                
+                // Hide loading spinner
+                loading.style.display = 'none';
+                jobListings.style.opacity = '1';
+                
+                // Add click animation to apply buttons
+                document.querySelectorAll('.apply-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        this.classList.add('animate__animated', 'animate__pulse');
+                        setTimeout(() => {
+                            this.classList.remove('animate__animated', 'animate__pulse');
+                        }, 1000);
+                        alert('Application process would start here!');
+                    });
+                });
+            }, 800);
+        }
+
+        // Initial render
+        renderJobs(jobs);
+
+        // Filter functionality
+        document.getElementById('search-btn').addEventListener('click', function() {
+            this.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                this.classList.remove('animate__animated', 'animate__pulse');
+            }, 1000);
+            
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const locationFilter = document.getElementById('location-filter').value;
+            const experienceFilter = document.getElementById('experience-filter').value;
+            
+            const filteredJobs = jobs.filter(job => {
+                // Search term matching
+                const matchesSearch = job.title.toLowerCase().includes(searchTerm) || 
+                                    job.company.toLowerCase().includes(searchTerm) ||
+                                    job.description.toLowerCase().includes(searchTerm);
+                
+                // Location filter
+                const matchesLocation = locationFilter === '' || 
+                                       job.location.includes(locationFilter);
+                
+                // Experience filter
+                let matchesExperience = true;
+                if (experienceFilter !== '') {
+                    if (experienceFilter === '0') {
+                        matchesExperience = job.experience.includes('0') || 
+                                           job.experience.toLowerCase().includes('fresher');
+                    } else if (experienceFilter === '1-2') {
+                        matchesExperience = job.experience.includes('1') || 
+                                           job.experience.includes('2');
+                    } else if (experienceFilter === '3-5') {
+                        matchesExperience = job.experience.includes('3') || 
+                                           job.experience.includes('4') ||
+                                           job.experience.includes('5');
+                    } else if (experienceFilter === '5+') {
+                        matchesExperience = parseInt(job.experience) > 5;
+                    }
+                }
+                
+                return matchesSearch && matchesLocation && matchesExperience;
+            });
+            
+            renderJobs(filteredJobs);
+        });
+
+        // Category filter tags
+        const tags = document.querySelectorAll('.tag');
+        tags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                // Add click animation
+                this.classList.add('animate__animated', 'animate__bounceIn');
+                setTimeout(() => {
+                    this.classList.remove('animate__animated', 'animate__bounceIn');
+                }, 1000);
+                
+                // Remove active class from all tags
+                tags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                if (filter === 'all') {
+                    renderJobs(jobs);
+                } else {
+                    const filteredJobs = jobs.filter(job => job.category === filter);
+                    renderJobs(filteredJobs);
+                }
+            });
+        });
+        
+        // Input focus animations
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('animate__animated', 'animate__pulse');
+                setTimeout(() => {
+                    this.parentElement.classList.remove('animate__animated', 'animate__pulse');
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
