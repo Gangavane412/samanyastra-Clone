@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup - Samanyastra</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+            margin-left: 40%;
+            margin-top: 10%;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: background 0.3s;
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        }
+
+        p {
+            color: white;
+            font-size: 14px;
+        }
+
+        p a {
+            color: #ffcc00;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 30px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            input,
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">samanyastra</a>
+
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="navbar-menu" id="navbar-menu">
+                <li class="navbar-item">
+                    <a href="../index.html" class="navbar-links">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../about.html" class="navbar-links">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../services.html" class="navbar-links">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../contact.html" class="navbar-links">Contact</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../job2.html" class="navbar-links">Careers</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../mock.html" class="navbar-links">mock</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="signup.html" class="button">Sign Up</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="login.html" class="button">login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <script>
+        function login() {
+            let email = document.getElementById("loginEmail").value.trim();
+            let password = document.getElementById("loginPassword").value.trim();
+
+            if (!email || !password) {
+                alert("All fields are required!");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            let user = users.find(user => user.email === email);
+
+            if (user && user.password === password) {
+                alert("Login successful! Welcome, " + user.username);
+                localStorage.setItem("loggedInUser", JSON.stringify(user)); // Save session
+                window.location.href = "../index.html"; // Redirect after login
+            } else {
+                alert("Incorrect email or password!");
+            }
+        }
+    </script>
+</body>
+
+</html>
