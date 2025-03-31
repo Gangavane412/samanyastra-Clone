@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Samanyastra</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.9);
+            /* Updated background to match website theme */
+            color: white;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            /* Updated to match website color scheme */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 10px;
+            color: #ffcc00;
+            font-size: 24px;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">samanyastra</a>
+
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="navbar-menu" id="navbar-menu">
+                <li class="navbar-item">
+                    <a href="../index.html" class="navbar-links">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../about.html" class="navbar-links">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../services.html" class="navbar-links">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../contact.html" class="navbar-links">Contact</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../job2.html" class="navbar-links">Careers</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../mock.html" class="navbar-links">mock</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="signup.html" class="button">Sign Up</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="login.html" class="button">login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            alert("Your message has been sent successfully!");
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

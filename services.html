@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samanyastra courses</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    /* Courses Section */
+    .courses-section {
+        background: url('./image/img1.jpg') no-repeat center center/cover;
+    }
+
+    .courses-section {
+        text-align: center;
+        padding: 50px 20px;
+        background: linear-gradient(45deg, #121212, #1a1a2e);
+    }
+
+    .courses-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .course-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .course-card {
+        background: linear-gradient(135deg, #00eaff, #ff007f);
+        padding: 20px;
+        width: 300px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        transition: 0.3s;
+        color: white;
+        text-align: center;
+    }
+
+    .course-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .course-card h3 {
+        color: #121212;
+        font-weight: bold;
+    }
+
+    .enroll-btn {
+        background: linear-gradient(45deg, #8a2be2, #ffdd57);
+        color: black;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .enroll-btn:hover {
+        transform: scale(1.1);
+        background: linear-gradient(45deg, #ffdd57, #8a2be2);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+        .courses-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        background: linear-gradient(45deg, #ff007f, #8a2be2);
+        color: white;
+        padding: 15px 0;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">samanyastra</a>
+
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="navbar-menu" id="navbar-menu">
+                <li class="navbar-item">
+                    <a href="./index.html" class="navbar-links">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./about.html" class="navbar-links">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./services.html" class="navbar-links">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./contact.html" class="navbar-links">Contact</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./job2.html" class="navbar-links">Careers</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./mock.html" class="navbar-links">mock</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="./forms/signup.html" class="button">Sign Up</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="./forms/login.html" class="button">login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="courses" class="courses-section">
+        <h1>Explore Our Courses</h1><br><br>
+        <div class="courses-container">
+            <div class="course-row">
+                <div class="course-card">
+                    <h3>Front-end Web Development</h3><br>
+                    <p>Learn HTML, CSS, JavaScript, and modern web frameworks.</p><br>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+                <div class="course-card">
+                    <h3>Java + DSA</h3><br>
+                    <p>Master Java programming and Data Structures & Algorithms.</p><br>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+                <div class="course-card">
+                    <h3>Java Spring Boot</h3><br>
+                    <p>Develop backend applications using Spring Boot.</p><br>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-row">
+                <div class="course-card">
+                    <h3>Python + Django</h3><br>
+                    <p>Build powerful web applications with Django framework.</p><br>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+                <div class="course-card">
+                    <h3>Python + Machine Learning & Data Science</h3><br>
+                    <p>Learn AI, ML, and Data Science using Python.</p><br>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Samanyastra. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let enrollButtons = document.querySelectorAll(".enroll-btn");
+
+            enrollButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    let courseName = this.parentElement.querySelector("h3").innerText;
+                    let user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+                    if (!user) {
+                        alert("Please log in to enroll in a course.");
+                        window.location.href = "./forms/login.html"; // Redirect to login
+                        return;
+                    }
+
+                    let enrolledCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || {};
+
+                    if (!enrolledCourses[user.email]) {
+                        enrolledCourses[user.email] = [];
+                    }
+
+                    if (enrolledCourses[user.email].includes(courseName)) {
+                        alert("You are already enrolled in this course!");
+                    } else {
+                        enrolledCourses[user.email].push(courseName);
+                        localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+                        alert("Successfully enrolled in " + courseName);
+                        window.location.href = "./enrollment-success.html"; // Redirect to success page
+                    }
+                });
+            });
+        });
+    </script>
+
+    </script>
+
+</body>
+
+</html>
