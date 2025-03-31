@@ -8,7 +8,7 @@ mobileMenu.addEventListener('click', () => {
 });
 
 // Close mobile menu when clicking on a menu item
-document.querySelectorAll('.navbar-links').forEach(n => 
+document.querySelectorAll('.navbar-links').forEach(n =>
     n.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
         navbarMenu.classList.remove('active');
@@ -18,34 +18,34 @@ document.querySelectorAll('.navbar-links').forEach(n =>
 //************************** Hero section  ********************** */
 
 
-  // Create stars dynamically
-  document.addEventListener('DOMContentLoaded', function() {
+// Create stars dynamically
+document.addEventListener('DOMContentLoaded', function () {
     const stars = document.querySelector('.stars');
     const stars2 = document.querySelector('.stars2');
     const stars3 = document.querySelector('.stars3');
-    
+
     function createStars(container, count, sizeRange, durationRange) {
         for (let i = 0; i < count; i++) {
             const star = document.createElement('div');
             star.className = 'star';
-            
+
             const size = Math.random() * sizeRange;
             const duration = (Math.random() * (durationRange[1] - durationRange[0])) + durationRange[0];
             const delay = Math.random() * 5;
             const posX = Math.random() * 100;
             const posY = Math.random() * 100;
-            
+
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.left = `${posX}%`;
             star.style.top = `${posY}%`;
             star.style.animationDuration = `${duration}s`;
             star.style.animationDelay = `${delay}s`;
-            
+
             container.appendChild(star);
         }
     }
-    
+
     createStars(stars, 100, 2, [5, 10]);
     createStars(stars2, 50, 3, [3, 7]);
     createStars(stars3, 25, 4, [1, 4]);
@@ -55,22 +55,22 @@ document.querySelectorAll('.navbar-links').forEach(n =>
 //***************************************** */
 
 
- // Create floating particles
- document.addEventListener('DOMContentLoaded', function() {
+// Create floating particles
+document.addEventListener('DOMContentLoaded', function () {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
-    
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
-        
+
         // Random properties
         const size = Math.random() * 3 + 1;
         const posX = Math.random() * 100;
         const duration = Math.random() * 20 + 10;
         const delay = Math.random() * 10;
         const opacity = Math.random() * 0.5 + 0.1;
-        
+
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.left = `${posX}%`;
@@ -78,7 +78,7 @@ document.querySelectorAll('.navbar-links').forEach(n =>
         particle.style.animationDuration = `${duration}s`;
         particle.style.animationDelay = `${delay}s`;
         particle.style.opacity = opacity;
-        
+
         particlesContainer.appendChild(particle);
     }
 });
@@ -86,21 +86,21 @@ document.querySelectorAll('.navbar-links').forEach(n =>
 
 
 //**********************************why samanyasra section****************** */
-  // Create floating particles
-  document.addEventListener('DOMContentLoaded', function() {
+// Create floating particles
+document.addEventListener('DOMContentLoaded', function () {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 50;
-    
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
-        
+
         const size = Math.random() * 4 + 1;
         const posX = Math.random() * 100;
         const duration = Math.random() * 20 + 10;
         const delay = Math.random() * 15;
         const opacity = Math.random() * 0.7 + 0.1;
-        
+
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.left = `${posX}%`;
@@ -108,7 +108,7 @@ document.querySelectorAll('.navbar-links').forEach(n =>
         particle.style.animationDuration = `${duration}s`;
         particle.style.animationDelay = `${delay}s`;
         particle.style.opacity = opacity;
-        
+
         particlesContainer.appendChild(particle);
     }
 });
@@ -118,15 +118,15 @@ document.querySelectorAll('.navbar-links').forEach(n =>
 
 
 // Add shooting stars to existing floating-particles div
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const particles = document.getElementById('floating-particles');
-    
+
     function createShootingStar() {
         const star = document.createElement('i');
         const size = Math.random() * 2 + 1;
         const duration = Math.random() * 3 + 2;
         const delay = Math.random() * 5;
-        
+
         star.style.cssText = `
             left: ${Math.random() * 20}%;
             top: ${Math.random() * 20}%;
@@ -135,20 +135,20 @@ document.addEventListener('DOMContentLoaded', function() {
             animation-duration: ${duration}s;
             animation-delay: ${delay}s;
         `;
-        
+
         particles.appendChild(star);
-        
+
         // Remove after animation completes
         setTimeout(() => {
             star.remove();
         }, (duration + delay) * 1000);
     }
-    
+
     // Create initial stars
     for (let i = 0; i < 5; i++) {
         createShootingStar();
     }
-    
+
     // Continue creating stars periodically
     setInterval(createShootingStar, 1000);
 });
@@ -157,20 +157,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //****************student flow or work flow*/
 
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
-    
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
-     
+
         const size = Math.random() * 3 + 1;
         const posX = Math.random() * 100;
         const duration = Math.random() * 20 + 10;
         const delay = Math.random() * 10;
         const opacity = Math.random() * 0.5 + 0.1;
-        
+
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.left = `${posX}%`;
@@ -178,11 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
         particle.style.animationDuration = `${duration}s`;
         particle.style.animationDelay = `${delay}s`;
         particle.style.opacity = opacity;
-        
+
         particlesContainer.appendChild(particle);
     }
-    
-  
+
+
     const steps = document.querySelectorAll('.step');
     steps.forEach(step => {
         step.addEventListener('mouseenter', () => {
@@ -197,17 +197,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 //**********************conatct section ******************** */
-   // Particle Animation
-document.addEventListener('DOMContentLoaded', function() {
+// Particle Animation
+document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('stellar-contact-particles');
-    
+
     function createParticle() {
         const particle = document.createElement('div');
         const size = Math.random() * 3 + 1;
         const duration = Math.random() * 10 + 5;
         const randomX = (Math.random() * 200 - 100) + 'px';
         const randomY = (Math.random() * 200 - 100) + 'px';
-        
+
         particle.style.cssText = `
             position: absolute;
             left: ${Math.random() * 100}%;
@@ -222,64 +222,64 @@ document.addEventListener('DOMContentLoaded', function() {
             --random-x: ${randomX};
             --random-y: ${randomY};
         `;
-        
+
         container.appendChild(particle);
-        
+
         setTimeout(() => {
             particle.remove();
         }, duration * 1000);
     }
-    
+
     // Create initial particles
     for (let i = 0; i < 20; i++) {
         createParticle();
     }
-    
+
     // Continue creating particles
     setInterval(createParticle, 800);
 });
 
 
 //********************footer************* */
- // Shooting stars animation
-document.addEventListener('DOMContentLoaded', function() {
+// Shooting stars animation
+document.addEventListener('DOMContentLoaded', function () {
     const footer = document.querySelector('.cosmic-footer');
-    
+
     function createShootingStar() {
         const star = document.createElement('div');
         star.className = 'cosmic-shooting-star';
-        
+
         // Random position
         const startX = Math.random() * 100;
         const startY = Math.random() * 20;
-        
+
         // Random size and duration
         const size = Math.random() * 2 + 1;
         const duration = Math.random() * 3 + 2;
         const delay = Math.random() * 5;
-        
+
         star.style.cssText = `
             left: ${startX}%;
             top: ${startY}%;
             width: ${size}px;
             height: ${size}px;
-            box-shadow: 0 0 ${size*2}px ${size/2}px var(--cosmic-glow);
+            box-shadow: 0 0 ${size * 2}px ${size / 2}px var(--cosmic-glow);
             animation: cosmic-shooting ${duration}s linear ${delay}s infinite;
         `;
-        
+
         footer.appendChild(star);
-        
+
         // Remove after animation completes
         setTimeout(() => {
             star.remove();
         }, (duration + delay) * 1000);
     }
-    
+
     // Create initial stars
     for (let i = 0; i < 5; i++) {
         createShootingStar();
     }
-    
+
     // Continue creating stars periodically
     setInterval(createShootingStar, 1000);
 });
@@ -309,32 +309,32 @@ function googleTranslateElementInit() {
 
 
 // Save language preference and enhance functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Load saved language preference
-    if(localStorage.getItem('googtrans')) {
+    if (localStorage.getItem('googtrans')) {
         var lang = localStorage.getItem('googtrans').split('/')[2];
-        if(lang) {
+        if (lang) {
             var iframe = document.querySelector('.goog-te-menu-frame');
-            if(iframe) {
+            if (iframe) {
                 var item = iframe.contentWindow.document.querySelector('.goog-te-menu2-item[value="' + lang + '"]');
-                if(item) item.click();
+                if (item) item.click();
             }
         }
     }
-    
+
     // Listen for language changes
-    var observer = new MutationObserver(function() {
+    var observer = new MutationObserver(function () {
         var langValue = document.querySelector('.goog-te-menu-value');
-        if(langValue) {
+        if (langValue) {
             var currentLang = langValue.textContent;
-            if(currentLang && currentLang !== 'Select Language') {
+            if (currentLang && currentLang !== 'Select Language') {
                 var iframe = document.querySelector('.goog-te-menu-frame');
-                if(iframe) {
+                if (iframe) {
                     var langCodeElement = iframe.contentWindow.document.querySelector('.goog-te-menu2-item[data-language-code="' + currentLang + '"]');
-                    if(langCodeElement) {
+                    if (langCodeElement) {
                         var langCode = langCodeElement.value;
                         localStorage.setItem('googtrans', '/en/' + langCode);
-                        
+
                         // Optional: Reload page after language change for better compatibility
                         // window.location.reload();
                     }
@@ -342,40 +342,39 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
+
     var langValueElement = document.querySelector('.goog-te-menu-value');
-    if(langValueElement) {
+    if (langValueElement) {
         observer.observe(langValueElement, {
             childList: true,
             subtree: true
         });
     }
-    
+
     // Optional: Add click event to all language links
-    document.querySelectorAll('a[data-lang]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
+    document.querySelectorAll('a[data-lang]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             var lang = this.getAttribute('data-lang');
             var iframe = document.querySelector('.goog-te-menu-frame');
-            if(iframe) {
+            if (iframe) {
                 var item = iframe.contentWindow.document.querySelector('.goog-te-menu2-item[value="' + lang + '"]');
-                if(item) item.click();
+                if (item) item.click();
             }
         });
     });
 });
 
 
-    
-    var selector = document.createElement('div');
-    selector.className = 'language-selector';
-    selector.innerHTML = '<h3>Select Language:</h3><ul>' + 
-        languages.map(function(lang) {
-            return '<li><a href="#" data-lang="' + lang.code + '">' + lang.name + '</a></li>';
-        }).join('') + '</ul>';
-    
-    document.querySelector('.content').appendChild(selector);
-       
+
+var selector = document.createElement('div');
+selector.className = 'language-selector';
+selector.innerHTML = '<h3>Select Language:</h3><ul>' +
+    languages.map(function (lang) {
+        return '<li><a href="#" data-lang="' + lang.code + '">' + lang.name + '</a></li>';
+    }).join('') + '</ul>';
+
+document.querySelector('.content').appendChild(selector);
+
 // Call the function to add language selector
 addLanguageSelector();
-
