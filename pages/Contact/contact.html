@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Samanyastra</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 10px;
+            color: #ffcc00;
+            font-size: 24px;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        :root {
+            --stellar-dark: #0a0a1a;
+            --stellar-card-bg: #131313;
+            --stellar-cyan: #00f0ff;
+            --stellar-pink: #f00946;
+            --stellar-text-light: #ffffff;
+            --stellar-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        /* Contact Section Base */
+        .stellar-contact-section {
+            position: relative;
+            padding: 5rem 1.5rem;
+            background-color: var(--stellar-dark);
+            color: var(--stellar-text-light);
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Particles Background */
+        .stellar-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Content Wrapper */
+        .stellar-contact-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Headings */
+        .stellar-contact-heading {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+        }
+
+        .stellar-contact-heading span {
+            color: var(--stellar-cyan);
+            display: inline-block;
+            animation: stellar-float 3s ease-in-out infinite;
+        }
+
+        .stellar-contact-subheading {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Contact Grid Layout */
+        .stellar-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Contact Cards */
+        .stellar-contact-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stellar-contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--stellar-cyan);
+        }
+
+        /* Card Elements */
+        .stellar-contact-icon {
+            font-size: 2rem;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--stellar-cyan);
+            color: var(--stellar-cyan);
+            background: rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stellar-contact-card:hover .stellar-contact-icon {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--stellar-glow);
+        }
+
+        .stellar-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-card-text {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .stellar-contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--stellar-cyan);
+            color: var(--stellar-card-bg);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .stellar-contact-button:hover {
+            background: var(--stellar-text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--stellar-glow);
+        }
+
+        /* Social Media Section */
+        .stellar-social-grid {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .stellar-social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .stellar-social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .stellar-instagram {
+            background: #E1306C;
+            color: white;
+        }
+
+        .stellar-linkedin {
+            background: #0077B5;
+            color: white;
+        }
+
+        .stellar-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .stellar-youtube {
+            background: #FF0000;
+            color: white;
+        }
+
+        .stellar-twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .stellar-telegram {
+            background: #0088cc;
+            color: white;
+        }
+
+        .stellar-social-tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--stellar-card-bg);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+            border: 1px solid var(--stellar-cyan);
+        }
+
+        .stellar-social-icon:hover .stellar-social-tooltip {
+            opacity: 1;
+            bottom: -40px;
+        }
+
+        /* Footer Section */
+        .stellar-social-footer {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            text-align: center;
+        }
+
+        .stellar-social-text {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .stellar-decorative-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .stellar-decorative-icons i {
+            font-size: 1.2rem;
+            color: var(--stellar-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .stellar-decorative-icons i:hover {
+            transform: scale(1.3);
+            text-shadow: 0 0 10px var(--stellar-cyan);
+        }
+
+        .stellar-cyan-text {
+            color: var(--stellar-cyan);
+        }
+
+        /* Employee Cards */
+        .stellar-team-section {
+            padding: 4rem 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .stellar-team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stellar-team-heading {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--stellar-cyan);
+            text-align: center;
+        }
+
+        .stellar-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stellar-employee-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stellar-employee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
+        }
+
+        .stellar-employee-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--stellar-cyan);
+            margin: 0 auto 1rem;
+            display: block;
+        }
+
+        .stellar-employee-name {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+            color: white;
+        }
+
+        .stellar-employee-position {
+            color: var(--stellar-cyan);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .stellar-employee-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        @keyframes stellar-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes stellar-particle-float {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--random-x), var(--random-y));
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .stellar-contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stellar-contact-heading {
+                font-size: 2rem;
+            }
+
+            .stellar-contact-subheading {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .stellar-social-grid {
+                gap: 0.8rem;
+            }
+
+            .stellar-social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .stellar-team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+  
+
+    <!-- Team Section -->
+    <section class="stellar-team-section">
+        <div class="stellar-team-container">
+            <h2 class="stellar-team-heading">Our  Team</h2>
+            <div class="stellar-team-grid">
+                <!-- Employee 1 -->
+                <div class="stellar-employee-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Employee" class="stellar-employee-photo">
+                    <h3 class="stellar-employee-name">Rahul Sharma</h3>
+                    <p class="stellar-employee-position">CEO & Founder</p>
+                    <div class="stellar-employee-social">
+                        <a href="#" class="stellar-social-icon stellar-linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span class="stellar-social-tooltip">LinkedIn</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-twitter" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span class="stellar-social-tooltip">Twitter</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span class="stellar-social-tooltip">Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Employee 2 -->
+                <div class="stellar-employee-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Employee" class="stellar-employee-photo">
+                    <h3 class="stellar-employee-name">Priya Patel</h3>
+                    <p class="stellar-employee-position">Head of Education</p>
+                    <div class="stellar-employee-social">
+                        <a href="#" class="stellar-social-icon stellar-linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span class="stellar-social-tooltip">LinkedIn</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-telegram" title="Telegram">
+                            <i class="fab fa-telegram"></i>
+                            <span class="stellar-social-tooltip">Telegram</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-whatsapp" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                            <span class="stellar-social-tooltip">WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Employee 3 -->
+                <div class="stellar-employee-card">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Employee" class="stellar-employee-photo">
+                    <h3 class="stellar-employee-name">Amit Singh</h3>
+                    <p class="stellar-employee-position">Tech Lead</p>
+                    <div class="stellar-employee-social">
+                        <a href="#" class="stellar-social-icon stellar-linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span class="stellar-social-tooltip">LinkedIn</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-twitter" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span class="stellar-social-tooltip">Twitter</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-youtube" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                            <span class="stellar-social-tooltip">YouTube</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Employee 4 -->
+                <div class="stellar-employee-card">
+                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Employee" class="stellar-employee-photo">
+                    <h3 class="stellar-employee-name">Neha Gupta</h3>
+                    <p class="stellar-employee-position">Marketing Director</p>
+                    <div class="stellar-employee-social">
+                        <a href="#" class="stellar-social-icon stellar-linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span class="stellar-social-tooltip">LinkedIn</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span class="stellar-social-tooltip">Instagram</span>
+                        </a>
+                        <a href="#" class="stellar-social-icon stellar-telegram" title="Telegram">
+                            <i class="fab fa-telegram"></i>
+                            <span class="stellar-social-tooltip">Telegram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            alert("Your message has been sent successfully!");
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexible Learning - Samanyastra</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --stellar-dark: #0a0a1a;
+            --stellar-card-bg: #131313;
+            --stellar-cyan: #00f0ff;
+            --stellar-pink: #f00946;
+            --stellar-text-light: #ffffff;
+            --stellar-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--stellar-dark);
+            color: var(--stellar-text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .flexible-hero {
+            position: relative;
+            padding: 6rem 1.5rem;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center/cover;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .flexible-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.85);
+            z-index: 1;
+        }
+
+        .flexible-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flexible-heading {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+        }
+
+        .flexible-subheading {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flexible-content {
+            padding: 5rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .schedule-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .schedule-card h3 {
+            color: var(--stellar-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .schedule-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .schedule-icon {
+            font-size: 2rem;
+            color: var(--stellar-cyan);
+            margin-right: 1.5rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .schedule-details h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .enroll-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--stellar-pink));
+            color: var(--stellar-dark);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--stellar-glow);
+        }
+
+        @media (max-width: 768px) {
+            .flexible-heading {
+                font-size: 2.2rem;
+            }
+            
+            .flexible-subheading {
+                font-size: 1.2rem;
+            }
+            
+            .schedule-option {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .schedule-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="flexible-hero">
+        <div class="flexible-container">
+            <h1 class="flexible-heading">Learn On Your Schedule</h1>
+            <p class="flexible-subheading">Education that adapts to your life, not the other way around</p>
+        </div>
+    </section>
+
+    <section class="flexible-content">
+        <div class="schedule-card">
+            <h3>Our Flexible Learning Options</h3>
+            
+            <div class="schedule-option">
+                <div class="schedule-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="schedule-details">
+                    <h4>Self-Paced Learning</h4>
+                    <p>Access course materials anytime, anywhere. Complete modules at your own speed with lifetime access to resources.</p>
+                </div>
+            </div>
+            
+            <div class="schedule-option">
+                <div class="schedule-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="schedule-details">
+                    <h4>Weekend Batches</h4>
+                    <p>Perfect for working professionals and students with weekday commitments. Saturday/Sunday sessions with live instruction.</p>
+                </div>
+            </div>
+            
+            <div class="schedule-option">
+                <div class="schedule-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="schedule-details">
+                    <h4>Evening Classes</h4>
+                    <p>After-work sessions from 7pm-9pm on weekdays, designed for those with daytime commitments.</p>
+                </div>
+            </div>
+            
+            <div class="schedule-option">
+                <div class="schedule-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="schedule-details">
+                    <h4>Morning Intensive</h4>
+                    <p>Early bird sessions from 6am-9am for those who prefer to learn in the morning hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="./courses.html" class="enroll-btn">
+                <i class="fas fa-search"></i> Browse Courses
+            </a>
+        </div>
+    </section>
+</body>
+</html>

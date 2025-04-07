@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test - Samanyastra</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            width: 60%;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .options label {
+            display: block;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .options label:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        select,
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .correct {
+            background-color: green !important;
+        }
+
+        .incorrect {
+            background-color: red !important;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .container {
+                width: 80%;
+            }
+
+            .navbar-menu {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar-links {
+                font-size: 16px;
+                padding: 10px;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            button,
+            select {
+                width: 100%;
+            }
+
+            .options label {
+                font-size: 14px;
+            }
+        }
+
+        /* Mobile Screens */
+        @media screen and (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .question {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            .navbar-toggle {
+                display: block;
+                cursor: pointer;
+            }
+
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 100;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-links {
+                padding: 15px;
+                text-align: center;
+                color: white;
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">samanyastra</a>
+
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="navbar-menu" id="navbar-menu">
+                <li class="navbar-item">
+                    <a href="./index.html" class="navbar-links">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./about.html" class="navbar-links">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./services.html" class="navbar-links">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./contact.html" class="navbar-links">Contact</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./job2.html" class="navbar-links">Careers</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./mock.html" class="navbar-links">mock</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="./forms/signup.html" class="button">Sign Up</a>
+                </li>
+                <li class="navbar-btn">
+                    <a href="./forms/login.html" class="button">login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Mock Test</h2>
+        <select id="courseSelect" onchange="loadQuiz()">
+            <option value="frontend">Front-end Web Development</option>
+            <option value="java-dsa">Java + DSA</option>
+            <option value="spring-boot">Java Spring Boot</option>
+            <option value="django">Python + Django</option>
+            <option value="ml">Python + Machine Learning & Data Science</option>
+        </select>
+        <p id="timer">Time Left: <span id="time">180</span> sec</p>
+        <div id="quiz"></div>
+        <button id="submitBtn" onclick="submitTest()">Submit</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let timerInterval;
+        function startTimer() {
+            let timeLeft = 180;
+            let timerElement = document.getElementById("time");
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+        const quizzes = {
+            "frontend": [
+                { question: "What does CSS stand for?", options: ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"], answer: "Cascading Style Sheets" },
+                { question: "Which CSS property is used to change text color?", options: ["font-color", "color", "text-color", "background-color"], answer: "color" },
+                { question: "What does HTML stand for?", options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language"], answer: "Hyper Text Markup Language" },
+                { question: "Which unit is NOT relative in CSS?", options: ["em", "rem", "px", "%"], answer: "px" },
+                { question: "Which tag is used to define a hyperlink in HTML?", options: ["link", "a", "href", "hlink"], answer: "a" },
+                { question: "What is the default position value in CSS?", options: ["absolute", "relative", "static", "fixed"], answer: "static" },
+                { question: "Which CSS property controls the font size?", options: ["text-size", "font-style", "font-size", "size"], answer: "font-size" },
+                { question: "Which tag is used to define an unordered list?", options: ["ol", "ul", "li", "list"], answer: "ul" },
+                { question: "What is the purpose of the 'alt' attribute in an image tag?", options: ["To style the image", "To add alternative text", "To create an image link", "To adjust image size"], answer: "To add alternative text" },
+                { question: "Which HTML tag is used to define a table row?", options: ["tr", "td", "th", "table"], answer: "tr" }
+            ],
+            "java-dsa": [
+                { question: "What is the time complexity of searching in a balanced BST?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answer: "O(log n)" },
+                { question: "Which data structure follows LIFO?", options: ["Queue", "Stack", "LinkedList", "HashMap"], answer: "Stack" },
+                { question: "Which sorting algorithm has the worst-case time complexity of O(n²)?", options: ["Merge Sort", "Quick Sort", "Bubble Sort", "Heap Sort"], answer: "Bubble Sort" },
+                { question: "What is the default size of an ArrayList in Java?", options: ["5", "10", "15", "20"], answer: "10" },
+                { question: "Which method is used to insert an element at a specific position in a LinkedList?", options: ["add(index, element)", "insert(index, element)", "push(index, element)", "put(index, element)"], answer: "add(index, element)" },
+                { question: "What is the main advantage of a binary search tree?", options: ["Fast searching", "Uses less memory", "Always balanced", "Supports all operations in O(1)"], answer: "Fast searching" },
+                { question: "Which data structure is best for implementing a priority queue?", options: ["Stack", "Queue", "Heap", "LinkedList"], answer: "Heap" },
+                { question: "What is the space complexity of a recursive function in worst-case scenario?", options: ["O(1)", "O(n)", "O(log n)", "O(n²)"], answer: "O(n)" },
+                { question: "Which Java interface provides a way to store unique elements?", options: ["List", "Set", "Queue", "Map"], answer: "Set" },
+                { question: "What is the main difference between HashMap and TreeMap?", options: ["HashMap allows duplicates", "TreeMap maintains sorted order", "TreeMap is faster", "HashMap does not allow null values"], answer: "TreeMap maintains sorted order" }
+            ],
+            "spring-boot": [
+                { question: "What is Spring Boot?", options: ["A framework", "A library", "A database", "An IDE"], answer: "A framework" },
+                { question: "Which annotation is used to create a Spring Boot application?", options: ["@SpringBootApplication", "@SpringApp", "@SpringMain", "@SpringConfiguration"], answer: "@SpringBootApplication" },
+                { question: "What does Spring Boot minimize the need for?", options: ["Manual configurations", "Database queries", "HTML files", "CSS styling"], answer: "Manual configurations" },
+                { question: "Which embedded server is commonly used in Spring Boot?", options: ["Tomcat", "Apache", "Nginx", "Jetty"], answer: "Tomcat" },
+                { question: "What is the purpose of application.properties in Spring Boot?", options: ["To configure the application", "To store HTML files", "To create REST APIs", "To store Java classes"], answer: "To configure the application" },
+                { question: "Which dependency is required for creating REST APIs in Spring Boot?", options: ["Spring Web", "Spring Security", "Spring Data", "Spring Cloud"], answer: "Spring Web" },
+                { question: "What does @RestController annotation do?", options: ["Defines a REST API", "Configures security", "Creates a database connection", "Starts a Spring Boot application"], answer: "Defines a REST API" },
+                { question: "What file format is used for Spring Boot configurations?", options: [".properties", ".config", ".xml", ".json"], answer: ".properties" },
+                { question: "What tool is used to manage dependencies in Spring Boot?", options: ["Maven", "Node.js", "Jenkins", "Docker"], answer: "Maven" },
+                { question: "Which annotation is used for dependency injection in Spring Boot?", options: ["@Autowired", "@Inject", "@Resource", "@Component"], answer: "@Autowired" }
+            ],
+            "django": [
+                { question: "What is Django?", options: ["A Python framework", "A Java framework", "A database", "A CSS library"], answer: "A Python framework" },
+                { question: "Which command is used to create a Django project?", options: ["django-admin startproject", "django-create project", "django new project", "django-start"], answer: "django-admin startproject" },
+                { question: "Which file defines database models in Django?", options: ["models.py", "views.py", "urls.py", "settings.py"], answer: "models.py" },
+                { question: "What is the default database used in Django?", options: ["SQLite", "MySQL", "PostgreSQL", "MongoDB"], answer: "SQLite" },
+                { question: "Which command runs the Django server?", options: ["python manage.py runserver", "django runserver", "python server.py", "django-start"], answer: "python manage.py runserver" },
+                { question: "Which template engine is used in Django?", options: ["Django Template Language", "Jinja", "EJS", "Handlebars"], answer: "Django Template Language" },
+                { question: "What is a Django view?", options: ["A function that handles user requests", "A database table", "A front-end component", "An HTML template"], answer: "A function that handles user requests" },
+                { question: "Which command applies database migrations in Django?", options: ["python manage.py migrate", "django-migrate", "apply-migrations", "update-db"], answer: "python manage.py migrate" },
+                { question: "Which Django feature handles user authentication?", options: ["django.contrib.auth", "django.security", "django.middleware", "django.auth"], answer: "django.contrib.auth" },
+                { question: "Which file stores URL routing in Django?", options: ["urls.py", "routes.py", "views.py", "models.py"], answer: "urls.py" }
+            ],
+            "ml": [
+                { question: "What is machine learning?", options: ["A subset of AI", "A database technology", "A web framework", "A programming language"], answer: "A subset of AI" },
+                { question: "Which Python library is commonly used for ML?", options: ["Scikit-learn", "Flask", "Django", "Pandas"], answer: "Scikit-learn" },
+                { question: "What is supervised learning?", options: ["Training with labeled data", "Training without data", "A form of database management", "A type of cloud computing"], answer: "Training with labeled data" },
+                { question: "Which algorithm is used for classification?", options: ["Decision Tree", "K-Means", "DBSCAN", "PCA"], answer: "Decision Tree" },
+                { question: "Which metric evaluates model accuracy?", options: ["Precision", "Margin", "Cluster score", "Fit ratio"], answer: "Precision" }
+            ]
+        };
+
+
+        function loadQuiz() {
+            let course = document.getElementById("courseSelect").value;
+            let quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = "";
+            quizzes[course].forEach((q, index) => {
+                let questionHTML = `<div class='question'>
+                    <p>${index + 1}. ${q.question}</p>
+                    <div class='options'>
+                        ${q.options.map(opt => `<label><input type='radio' name='q${index}' value='${opt}'> ${opt}</label>`).join('')}
+                    </div>
+                </div>`;
+                quizDiv.innerHTML += questionHTML;
+            });
+        }
+
+        function submitTest() {
+            clearInterval(timerInterval);
+            document.getElementById("submitBtn").disabled = true;
+
+            let course = document.getElementById("courseSelect").value;
+            let questions = quizzes[course]; // Corrected variable name
+            let selectedOptions = document.querySelectorAll("input[type='radio']:checked");
+            let resultDiv = document.getElementById("result");
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                let selected = document.querySelector(`input[name='q${index}']:checked`);
+                let parentLabels = document.querySelectorAll(`input[name='q${index}']`);
+
+                if (selected) {
+                    if (selected.value === q.answer) {
+                        score++;
+                        selected.parentElement.classList.add("correct");
+                    } else {
+                        selected.parentElement.classList.add("incorrect");
+                    }
+                }
+
+                // Highlight correct answer (for reference)
+                parentLabels.forEach(label => {
+                    if (label.value === q.answer) {
+                        label.parentElement.classList.add("correct");
+                    }
+                });
+            });
+
+            resultDiv.innerHTML = `<p>Test submitted successfully! Your Score: ${score} / ${questions.length}</p>`;
+            resultDiv.style.display = "block";
+        }
+
+        window.onload = () => {
+            loadQuiz();
+            startTimer();
+        };
+    </script>
+</body>
+
+</html>

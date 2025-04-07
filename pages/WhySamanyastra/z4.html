@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Learning - Samanyastra</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --stellar-dark: #0a0a1a;
+            --stellar-card-bg: #131313;
+            --stellar-cyan: #00f0ff;
+            --stellar-pink: #f00946;
+            --stellar-text-light: #ffffff;
+            --stellar-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--stellar-dark);
+            color: var(--stellar-text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .peer-hero {
+            position: relative;
+            padding: 6rem 1.5rem;
+            background: url('https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .peer-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.85);
+            z-index: 1;
+        }
+
+        .peer-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .peer-heading {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+        }
+
+        .peer-subheading {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .peer-content {
+            padding: 5rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .session-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .session-card h3 {
+            color: var(--stellar-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .session-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .session-type {
+            padding: 1.5rem;
+            background: rgba(0, 240, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .session-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px var(--stellar-glow);
+        }
+
+        .session-type h4 {
+            color: var(--stellar-cyan);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .session-type h4 i {
+            font-size: 1.2rem;
+        }
+
+        .join-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--stellar-pink));
+            color: var(--stellar-dark);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .join-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--stellar-glow);
+        }
+
+        @media (max-width: 768px) {
+            .peer-heading {
+                font-size: 2.2rem;
+            }
+            
+            .peer-subheading {
+                font-size: 1.2rem;
+            }
+            
+            .session-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="peer-hero">
+        <div class="peer-container">
+            <h1 class="peer-heading">Peer-Powered Learning</h1>
+            <p class="peer-subheading">Where students become both learners and teachers</p>
+        </div>
+    </section>
+
+    <section class="peer-content">
+        <div class="session-card">
+            <h3>About Our Student-Led Sessions</h3>
+            <p>At Samanyastra, we believe the best learning happens when students teach each other. Our peer learning program creates a collaborative environment where knowledge flows in all directions.</p>
+            
+            <div class="session-types">
+                <div class="session-type">
+                    <h4><i class="fas fa-code"></i> Code Reviews</h4>
+                    <p>Students present their code to peers for constructive feedback and improvement suggestions.</p>
+                </div>
+                
+                <div class="session-type">
+                    <h4><i class="fas fa-chalkboard"></i> Topic Presentations</h4>
+                    <p>Students research and present technical topics to deepen their understanding and teaching skills.</p>
+                </div>
+                
+                <div class="session-type">
+                    <h4><i class="fas fa-users"></i> Study Groups</h4>
+                    <p>Small groups working together to solve problems and complete projects collaboratively.</p>
+                </div>
+                
+                <div class="session-type">
+                    <h4><i class="fas fa-project-diagram"></i> Hackathons</h4>
+                    <p>Student-organized coding competitions to build practical skills under time pressure.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-card">
+            <h3>Benefits of Peer Learning</h3>
+            
+            <div class="session-types">
+                <div class="session-type">
+                    <h4><i class="fas fa-brain"></i> Deeper Understanding</h4>
+                    <p>Teaching concepts to others reinforces your own knowledge and reveals gaps in understanding.</p>
+                </div>
+                
+                <div class="session-type">
+                    <h4><i class="fas fa-comments"></i> Communication Skills</h4>
+                    <p>Explaining technical concepts improves your ability to articulate complex ideas.</p>
+                </div>
+                
+                <div class="session-type">
+                    <h4><i class="fas fa-network-wired"></i> Professional Network</h4>
+                    <p>Build relationships with peers that can become valuable professional connections.</p>
+                </div>
+                
+                <div class="session-type">
+                    <h4><i class="fas fa-lightbulb"></i> Creative Problem Solving</h4>
+                    <p>Different perspectives lead to innovative solutions you might not discover alone.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="./community.html" class="join-btn">
+                <i class="fas fa-user-plus"></i> Join Our Community
+            </a>
+        </div>
+    </section>
+</body>
+</html>

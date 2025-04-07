@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samanyastra Courses</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --stellar-dark: #0a0a1a;
+            --stellar-card-bg: #131313;
+            --stellar-cyan: #00f0ff;
+            --stellar-pink: #f00946;
+            --stellar-purple: #8a2be2;
+            --stellar-yellow: #ffdd57;
+            --stellar-text-light: #ffffff;
+            --stellar-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--stellar-dark);
+            color: var(--stellar-text-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Courses Section */
+        .stellar-courses-section {
+            position: relative;
+            padding: 5rem 1.5rem;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') no-repeat center center/cover;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .stellar-courses-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.85);
+            z-index: 1;
+        }
+
+        .stellar-courses-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stellar-courses-heading {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .stellar-courses-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--stellar-cyan);
+            border-radius: 3px;
+        }
+
+        .stellar-courses-subheading {
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stellar-courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stellar-course-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .stellar-course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--stellar-cyan), var(--stellar-pink));
+        }
+
+        .stellar-course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--stellar-cyan);
+        }
+
+        .stellar-course-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-course-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-course-desc {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            min-height: 60px;
+        }
+
+        .stellar-course-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .stellar-course-features li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .stellar-course-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-enroll-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(45deg, var(--stellar-cyan), var(--stellar-purple));
+            color: var(--stellar-dark);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .stellar-enroll-btn:hover {
+            background: linear-gradient(45deg, var(--stellar-purple), var(--stellar-cyan));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--stellar-glow);
+            color: white;
+        }
+
+        .stellar-course-duration {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--stellar-cyan);
+        }
+
+        /* Animations */
+        @keyframes stellar-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .stellar-courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stellar-courses-heading {
+                font-size: 2.2rem;
+            }
+
+            .stellar-courses-subheading {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="stellar-courses-section">
+        <div class="stellar-courses-container">
+            <h1 class="stellar-courses-heading">Explore Our <span>Cosmic Courses</span></h1>
+            <p class="stellar-courses-subheading">Launch your tech career with our stellar learning programs</p>
+            
+            <div class="stellar-courses-grid">
+                <!-- Course 1 -->
+                <div class="stellar-course-card">
+                    <div class="stellar-course-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="stellar-course-title">Front-end Web Development</h3>
+                    <p class="stellar-course-desc">Master HTML, CSS, JavaScript and modern frameworks to build stellar websites</p>
+                    <ul class="stellar-course-features">
+                        <li>Interactive projects</li>
+                        <li>React.js included</li>
+                        <li>Responsive design</li>
+                    </ul>
+                    <span class="stellar-course-duration">3 Months Program</span>
+                    <button class="stellar-enroll-btn">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </button>
+                </div>
+                
+                <!-- Course 2 -->
+                <div class="stellar-course-card">
+                    <div class="stellar-course-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h3 class="stellar-course-title">Java + DSA</h3>
+                    <p class="stellar-course-desc">Master Java programming and Data Structures & Algorithms for tech interviews</p>
+                    <ul class="stellar-course-features">
+                        <li>500+ problems</li>
+                        <li>Interview preparation</li>
+                        <li>Real-world projects</li>
+                    </ul>
+                    <span class="stellar-course-duration">4 Months Program</span>
+                    <button class="stellar-enroll-btn">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </button>
+                </div>
+                
+                <!-- Course 3 -->
+                <div class="stellar-course-card">
+                    <div class="stellar-course-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="stellar-course-title">Java Spring Boot</h3>
+                    <p class="stellar-course-desc">Develop robust backend applications using Spring Boot framework</p>
+                    <ul class="stellar-course-features">
+                        <li>REST APIs</li>
+                        <li>Database integration</li>
+                        <li>Microservices</li>
+                    </ul>
+                    <span class="stellar-course-duration">3 Months Program</span>
+                    <button class="stellar-enroll-btn">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </button>
+                </div>
+                
+                <!-- Course 4 -->
+                <div class="stellar-course-card">
+                    <div class="stellar-course-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="stellar-course-title">Python + Django</h3>
+                    <p class="stellar-course-desc">Build powerful web applications with Django framework</p>
+                    <ul class="stellar-course-features">
+                        <li>Full-stack development</li>
+                        <li>Authentication systems</li>
+                        <li>Deployment</li>
+                    </ul>
+                    <span class="stellar-course-duration">3 Months Program</span>
+                    <button class="stellar-enroll-btn">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </button>
+                </div>
+                
+                <!-- Course 5 -->
+                <div class="stellar-course-card">
+                    <div class="stellar-course-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="stellar-course-title">Python + ML & Data Science</h3>
+                    <p class="stellar-course-desc">Learn AI, Machine Learning and Data Science using Python</p>
+                    <ul class="stellar-course-features">
+                        <li>TensorFlow & PyTorch</li>
+                        <li>Data visualization</li>
+                        <li>Real-world datasets</li>
+                    </ul>
+                    <span class="stellar-course-duration">5 Months Program</span>
+                    <button class="stellar-enroll-btn">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </button>
+                </div>
+                
+                <!-- Course 6 -->
+                <div class="stellar-course-card">
+                    <div class="stellar-course-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="stellar-course-title">Mobile App Development</h3>
+                    <p class="stellar-course-desc">Build cross-platform mobile apps with React Native</p>
+                    <ul class="stellar-course-features">
+                        <li>iOS & Android</li>
+                        <li>State management</li>
+                        <li>App publishing</li>
+                    </ul>
+                    <span class="stellar-course-duration">4 Months Program</span>
+                    <button class="stellar-enroll-btn">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let enrollButtons = document.querySelectorAll(".stellar-enroll-btn");
+
+            enrollButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    let courseName = this.parentElement.querySelector(".stellar-course-title").innerText;
+                    let user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+                    if (!user) {
+                        alert("Please log in to enroll in a course.");
+                        window.location.href = "./forms/login.html";
+                        return;
+                    }
+
+                    let enrolledCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || {};
+
+                    if (!enrolledCourses[user.email]) {
+                        enrolledCourses[user.email] = [];
+                    }
+
+                    if (enrolledCourses[user.email].includes(courseName)) {
+                        alert("You are already enrolled in this course!");
+                    } else {
+                        enrolledCourses[user.email].push(courseName);
+                        localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+                        alert("Successfully enrolled in " + courseName);
+                        window.location.href = "./enrollment-success.html";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

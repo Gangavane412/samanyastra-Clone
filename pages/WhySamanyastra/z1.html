@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Opportunities - Samanyastra</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --stellar-dark: #0a0a1a;
+            --stellar-card-bg: #131313;
+            --stellar-cyan: #00f0ff;
+            --stellar-pink: #f00946;
+            --stellar-text-light: #ffffff;
+            --stellar-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--stellar-dark);
+            color: var(--stellar-text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .internship-hero {
+            position: relative;
+            padding: 6rem 1.5rem;
+            background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') no-repeat center center/cover;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .internship-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.85);
+            z-index: 1;
+        }
+
+        .internship-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .internship-heading {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+        }
+
+        .internship-subheading {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .internship-content {
+            padding: 5rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .internship-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .internship-card h3 {
+            color: var(--stellar-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .internship-card ul {
+            padding-left: 1.5rem;
+        }
+
+        .internship-card li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .internship-card li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--stellar-cyan);
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        .apply-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--stellar-cyan), var(--stellar-pink));
+            color: var(--stellar-dark);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--stellar-glow);
+        }
+
+        @media (max-width: 768px) {
+            .internship-heading {
+                font-size: 2.2rem;
+            }
+            
+            .internship-subheading {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="internship-hero">
+        <div class="internship-container">
+            <h1 class="internship-heading">Launch Your Career with Our Internships</h1>
+            <p class="internship-subheading">Gain real-world experience and build your professional network</p>
+        </div>
+    </section>
+
+    <section class="internship-content">
+        <div class="internship-card">
+            <h3>Why Intern With Samanyastra?</h3>
+            <p>Our internship program is designed to bridge the gap between academic learning and professional requirements. You'll work on real projects that make an impact while receiving mentorship from industry experts.</p>
+            
+            <ul>
+                <li>Hands-on experience with cutting-edge technologies</li>
+                <li>Mentorship from experienced professionals</li>
+                <li>Opportunity to work on live projects</li>
+                <li>Networking with industry leaders</li>
+                <li>Potential for full-time employment</li>
+                <li>Certificate upon successful completion</li>
+            </ul>
+        </div>
+
+        <div class="internship-card">
+            <h3>Internship Tracks</h3>
+            <p>We offer internships in various domains to match your skills and interests:</p>
+            
+            <ul>
+                <li><strong>Web Development:</strong> Frontend, Backend, or Full-stack</li>
+                <li><strong>Data Science:</strong> Machine Learning, AI, Data Analysis</li>
+                <li><strong>Mobile Development:</strong> Android, iOS, Cross-platform</li>
+                <li><strong>Cloud Computing:</strong> AWS, Azure, Google Cloud</li>
+                <li><strong>UI/UX Design:</strong> User Research, Prototyping, Testing</li>
+                <li><strong>Digital Marketing:</strong> SEO, Social Media, Content</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="./apply.html" class="apply-btn">
+                <i class="fas fa-paper-plane"></i> Apply Now
+            </a>
+        </div>
+    </section>
+</body>
+</html>

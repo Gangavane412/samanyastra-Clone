@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Samanyastra</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --stellar-dark: #0a0a1a;
+            --stellar-card-bg: #131313;
+            --stellar-cyan: #00f0ff;
+            --stellar-pink: #f00946;
+            --stellar-purple: #8a2be2;
+            --stellar-yellow: #ffdd57;
+            --stellar-text-light: #ffffff;
+            --stellar-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--stellar-dark);
+            color: var(--stellar-text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* About Hero Section */
+        .stellar-about-hero {
+            position: relative;
+            padding: 8rem 1.5rem;
+            background: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2117&q=80') no-repeat center center/cover;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .stellar-about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.85);
+            z-index: 1;
+        }
+
+        .stellar-about-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stellar-about-heading {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .stellar-about-heading span {
+            color: var(--stellar-cyan);
+            animation: stellar-float 3s ease-in-out infinite;
+        }
+
+        .stellar-about-subheading {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mission Section */
+        .stellar-mission-section {
+            padding: 5rem 1.5rem;
+            background: var(--stellar-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stellar-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stellar-mission-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stellar-mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--stellar-cyan);
+        }
+
+        .stellar-mission-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-mission-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--stellar-cyan);
+        }
+
+        /* Team Section */
+        .stellar-team-section {
+            padding: 5rem 1.5rem;
+            background: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+        }
+
+        .stellar-team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.9);
+            z-index: 1;
+        }
+
+        .stellar-team-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stellar-team-heading {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+        }
+
+        .stellar-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stellar-team-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stellar-team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--stellar-cyan);
+        }
+
+        .stellar-team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--stellar-cyan);
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+
+        .stellar-team-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-team-position {
+            color: var(--stellar-text-light);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .stellar-team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .stellar-team-social a {
+            color: var(--stellar-text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .stellar-team-social a:hover {
+            color: var(--stellar-cyan);
+            transform: translateY(-3px);
+        }
+
+        /* Values Section */
+        .stellar-values-section {
+            padding: 5rem 1.5rem;
+            background: var(--stellar-dark);
+            text-align: center;
+        }
+
+        .stellar-values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stellar-values-heading {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 15px var(--stellar-glow);
+        }
+
+        .stellar-values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .stellar-value-card {
+            background: var(--stellar-card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .stellar-value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7),
+                0 0 0 1px var(--stellar-cyan);
+        }
+
+        .stellar-value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--stellar-cyan);
+        }
+
+        .stellar-value-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--stellar-cyan);
+        }
+
+        /* Animations */
+        @keyframes stellar-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes stellar-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .stellar-about-heading {
+                font-size: 2.5rem;
+            }
+            
+            .stellar-about-subheading {
+                font-size: 1.2rem;
+            }
+            
+            .stellar-mission-grid,
+            .stellar-team-grid,
+            .stellar-values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="stellar-about-hero">
+        <div class="stellar-about-container">
+            <h1 class="stellar-about-heading"><span>Samanyastra</span></h1>
+            <p class="stellar-about-subheading">Exploring the universe of knowledge</p>
+            
+           
+
+
+
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="stellar-mission-section">
+        <div class="stellar-mission-grid">
+            <div class="stellar-mission-card">
+                <div class="stellar-mission-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h2 class="stellar-mission-title">Our Mission</h2>
+                <p>To revolutionize tech education by providing accessible, high-quality training that bridges the gap between academic learning and industry requirements. We're committed to launching careers into orbit with practical, project-based learning.</p>
+            </div>
+            
+            <div class="stellar-mission-card">
+                <div class="stellar-mission-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2 class="stellar-mission-title">Our Vision</h2>
+                <p>To become the North Star of tech education, guiding learners through the cosmos of digital transformation and emerging as the most trusted platform for career acceleration in the technology sector.</p>
+            </div>
+            
+            <div class="stellar-mission-card">
+                <div class="stellar-mission-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h2 class="stellar-mission-title">Our Story</h2>
+                <p>Founded in 2020 by a team of passionate engineers and educators, Samanyastra began as a small initiative to help students master coding. Today, we've grown into a cosmic force, transforming thousands of careers across the galaxy of technology.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Values Section -->
+    <section class="stellar-values-section">
+        <div class="stellar-values-container">
+            <h2 class="stellar-values-heading">Our <span>Core Values</span></h2>
+            
+            <div class="stellar-values-grid">
+                <div class="stellar-value-card">
+                    <div class="stellar-value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="stellar-value-title">Innovation</h3>
+                    <p>We constantly push boundaries to create cutting-edge learning experiences that prepare students for the future of technology.</p>
+                </div>
+                
+                <div class="stellar-value-card">
+                    <div class="stellar-value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="stellar-value-title">Community</h3>
+                    <p>We believe in the power of collaborative learning and building supportive networks that last beyond the classroom.</p>
+                </div>
+                
+                <div class="stellar-value-card">
+                    <div class="stellar-value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="stellar-value-title">Excellence</h3>
+                    <p>We maintain the highest standards in our curriculum, instruction, and student outcomes, never compromising on quality.</p>
+                </div>
+                
+                <div class="stellar-value-card">
+                    <div class="stellar-value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="stellar-value-title">Accessibility</h3>
+                    <p>We're committed to making tech education available to everyone, regardless of background or financial situation.</p>
+                </div>
+                
+                <div class="stellar-value-card">
+                    <div class="stellar-value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="stellar-value-title">Growth</h3>
+                    <p>We foster an environment where students and instructors alike are encouraged to continuously learn and improve.</p>
+                </div>
+                
+                <div class="stellar-value-card">
+                    <div class="stellar-value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="stellar-value-title">Passion</h3>
+                    <p>Our love for technology and education fuels everything we do, creating an inspiring learning atmosphere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add animations on scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.stellar-mission-card, .stellar-team-card, .stellar-value-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
