@@ -3,23 +3,23 @@
 A responsive clone of the Samanyastra news website built with HTML, CSS, and JavaScript.
 
 ![Samanyastra Clone Screenshot](./image/mdFileImages/first.png)  
-*(Replace `screenshot.png` with your actual screenshot file)*
+
 
 
 ![Samanyastra Clone Screenshot](./image/mdFileImages/second.png)  
-*(Replace `screenshot.png` with your actual screenshot file)*
+
 
 ![Samanyastra Clone Screenshot](./image/mdFileImages/four.png)  
-*(Replace `screenshot.png` with your actual screenshot file)*
+
 
 ![Samanyastra Clone Screenshot](./image/mdFileImages/threed.png)  
-*(Replace `screenshot.png` with your actual screenshot file)*
+
 
 ![Samanyastra Clone Screenshot](./image/mdFileImages/five.png)  
-*(Replace `screenshot.png` with your actual screenshot file)*
+
 ## 🔗 Live Demo  
 [View Live Demo](https://samanyastra-website.netlify.app/)  
-*(Replace with your actual deployment link)*
+
 
 ## Features
 
