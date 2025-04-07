@@ -2,19 +2,26 @@
 
 A responsive clone of the Samanyastra news website built with HTML, CSS, and JavaScript.
 
+*(Hero section)*
 ![Samanyastra Clone Screenshot](./image/mdFileImages/first.png)  
 
 
-
+*(Introducing Knowledge Bytes)*
 ![Samanyastra Clone Screenshot](./image/mdFileImages/second.png)  
 
 
+
+*(Why Samanyastra?)*
 ![Samanyastra Clone Screenshot](./image/mdFileImages/four.png)  
 
 
+
+*(Student to Leader Journey Program)*
 ![Samanyastra Clone Screenshot](./image/mdFileImages/threed.png)  
 
 
+
+*(Connect With Samanyastra)*
 ![Samanyastra Clone Screenshot](./image/mdFileImages/five.png)  
 
 ## 🔗 Live Demo  
