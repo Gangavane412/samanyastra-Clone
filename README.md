@@ -41,4 +41,4 @@ A responsive clone of the Samanyastra news website built with HTML, CSS, and Jav
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/samanyastra-clone.git
+   git clone https://github.com/Gangavane412/samanyastra-Clone
